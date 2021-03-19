@@ -16,7 +16,7 @@ export default function parseVariables(variables, opts = {}) {
   const result = sass.renderSync({
     data: constructSassString(variables),
     outputStyle: 'compressed',
-  }).css.toString().replace('}.', '}\n.');
+  }).css.toString().replace(/}./g, '}\n.');
 
   const parsedVariables = result.split(/\n/)
     .filter(line => line && line.length)
